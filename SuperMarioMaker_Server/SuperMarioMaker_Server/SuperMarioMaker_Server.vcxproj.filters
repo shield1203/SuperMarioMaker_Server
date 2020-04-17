@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\00.Define">
+      <UniqueIdentifier>{56a90184-09b1-4c6a-877b-9f11b763ff2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.ServerStart">
+      <UniqueIdentifier>{976d2a17-106e-4aee-b3cc-6d4571911458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.ServerSystem">
+      <UniqueIdentifier>{c48bff92-85ef-4a57-81c6-5402a56d131a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.GameUser">
+      <UniqueIdentifier>{8e8894f2-8578-482d-98e9-de315fc3dd6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Systems">
+      <UniqueIdentifier>{685be11a-16ea-460c-8168-998464aaf4a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Systems\00.SystemFrame">
+      <UniqueIdentifier>{5debfba4-9c5f-41bf-a3c0-1d36a8ff15ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Utility">
+      <UniqueIdentifier>{4255ff80-cf24-49ee-a987-e36073fcf3d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Utility\00.PacketManager">
+      <UniqueIdentifier>{0855e166-df0d-41c0-aad0-95baba75f66b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\05.Utility\01.GameRoomManager">
+      <UniqueIdentifier>{d97e49ff-506b-43a1-b1e4-bc07a70b4127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Systems\02.LobbySystem">
+      <UniqueIdentifier>{85c2f28d-3a54-4b49-a988-3202033b1324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Systems\01.LoginSystem">
+      <UniqueIdentifier>{9f63d705-22dc-430f-b14f-450e4759bd54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Systems\03.GameRoomSystem">
+      <UniqueIdentifier>{54c2152e-0af3-40a4-870b-b24f7ee9fcb9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>소스 파일\00.Define</Filter>
+    </ClInclude>
+    <ClInclude Include="DefineFunction.h">
+      <Filter>소스 파일\00.Define</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerSystem.h">
+      <Filter>소스 파일\02.ServerSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUser.h">
+      <Filter>소스 파일\03.GameUser</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemFrame.h">
+      <Filter>소스 파일\04.Systems\00.SystemFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbySystem.h">
+      <Filter>소스 파일\04.Systems\02.LobbySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketManager.h">
+      <Filter>소스 파일\05.Utility\00.PacketManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRoomManager.h">
+      <Filter>소스 파일\05.Utility\01.GameRoomManager</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginSystem.h">
+      <Filter>소스 파일\04.Systems\01.LoginSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRoomSystem.h">
+      <Filter>소스 파일\04.Systems\03.GameRoomSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ServerStart.cpp">
+      <Filter>소스 파일\01.ServerStart</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerSystem.cpp">
+      <Filter>소스 파일\02.ServerSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUser.cpp">
+      <Filter>소스 파일\03.GameUser</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbySystem.cpp">
+      <Filter>소스 파일\04.Systems\02.LobbySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketManager.cpp">
+      <Filter>소스 파일\05.Utility\00.PacketManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRoomManager.cpp">
+      <Filter>소스 파일\05.Utility\01.GameRoomManager</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginSystem.cpp">
+      <Filter>소스 파일\04.Systems\01.LoginSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRoomSystem.cpp">
+      <Filter>소스 파일\04.Systems\03.GameRoomSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
