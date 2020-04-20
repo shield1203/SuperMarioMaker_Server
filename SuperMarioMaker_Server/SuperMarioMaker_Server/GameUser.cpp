@@ -7,6 +7,7 @@
 #include "SystemFrame.h"
 #include "LoginSystem.h"
 #include "LobbySystem.h"
+#include "GameRoomSystem.h"
 
 GameUser::GameUser(SOCKET socket, SOCKADDR_IN cliaddr)
 {
@@ -46,6 +47,9 @@ void GameUser::Initialize()
 		case USER_STATE::USER_LOBBY:
 			m_systemFrame = new LobbySystem();
 			break;
+		case USER_STATE::USER_ROOM:
+			m_systemFrame = new GameRoomSystem();
+			break;
 		}
 	}
 }
@@ -74,9 +78,7 @@ void GameUser::Recv()
 
 void GameUser::Send()
 {
-	GameRoomManager::getInstance()->m_mutex.lock();
 	m_packetManager->SetPacket(m_state);
-	GameRoomManager::getInstance()->m_mutex.unlock();
 	send(m_socket, (char*)m_packetManager->m_packetData, sizeof(PacketData), 0);
 }
 

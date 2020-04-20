@@ -52,8 +52,6 @@ void GameRoomManager::CreateGameRoom(PacketManager* ownerUser)
 
 bool GameRoomManager::EnterRoom(int ownerUserId, PacketManager* gameUser)
 {
-	m_mutex.lock();
-
 	for (auto i : m_roomList)
 	{
 		if (i->ownerUserId == ownerUserId)
@@ -75,15 +73,11 @@ bool GameRoomManager::EnterRoom(int ownerUserId, PacketManager* gameUser)
 
 	gameUser->m_lobbyData->bEnterRoom = false;
 
-	m_mutex.unlock();
-
 	return false;
 }
 
 void GameRoomManager::ExitRoom(int userId)
 {
-	m_mutex.lock();
-
 	for (auto room = m_roomList.begin(); room != m_roomList.end();)
 	{
 		if ((*room)->ownerUserId == userId)
@@ -122,14 +116,10 @@ void GameRoomManager::ExitRoom(int userId)
 
 		room++;
 	}
-
-	m_mutex.unlock();
 }
 
 void GameRoomManager::GameStartRoom(int ownerUserId)
 {
-	m_mutex.lock();
-
 	printf("[%d]방 게임시작\n", ownerUserId);
 
 	for (auto room : m_roomList)
@@ -140,6 +130,4 @@ void GameRoomManager::GameStartRoom(int ownerUserId)
 			break;
 		}
 	}
-
-	m_mutex.unlock();
 }

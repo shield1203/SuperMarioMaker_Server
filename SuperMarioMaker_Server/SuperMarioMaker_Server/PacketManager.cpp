@@ -7,6 +7,7 @@ PacketManager::PacketManager()
 	m_packetData = new PacketData;
 	m_loginData = new LoginData;
 	m_lobbyData = new LobbyData;
+	m_gameRoomData = new GameRoomData;
 }
 
 PacketManager::~PacketManager()

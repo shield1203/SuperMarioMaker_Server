@@ -2,10 +2,10 @@
 #pragma once
 
 #define SERVER_IP "203.232.193.170"
-#define PORT_NUM 3000
+#define PORT_NUM 8000
 #define BLOG_SIZE 10
 #define MAX_MSG_LEN 2937
-#define MAX_DATA_LEN 2937 
+#define MAX_DATA_LEN 2929 
 
 enum class USER_STATE : unsigned int { USER_LOGIN, USER_LOBBY, USER_ROOM, USER_PLAY_GAME, CLOSE_CONNECT };
 

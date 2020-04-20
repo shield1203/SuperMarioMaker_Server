@@ -36,7 +36,7 @@ struct LobbyData_GameRoom
 };
 
 // Room
-enum class USER_ROOM : unsigned int { ROOM_IDLE, ROOM_BACK_LOBBY, ROOM_GAME_START };
+enum class USER_ROOM : unsigned int { ROOM_IDLE, ROOM_BACK_LOBBY, ROOM_GAME_START, ROOM_BACK_TITLE };
 
 struct GameRoomData
 {
