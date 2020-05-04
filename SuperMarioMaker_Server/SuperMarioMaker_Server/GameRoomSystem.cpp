@@ -24,7 +24,10 @@ void GameRoomSystem::CheckPacket(void* packetManager)
 		BackLobby(pPacketManager->m_userId);
 		break;
 	case USER_ROOM::ROOM_GAME_START:
-		GameStart(pPacketManager->m_userId);
+		if (pPacketManager->m_userId == pPacketManager->m_ownerUserId)
+		{
+			GameStart(pPacketManager->m_userId);
+		}
 		break;
 	}
 }

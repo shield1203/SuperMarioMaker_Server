@@ -13,4 +13,3 @@ public:
 	void LobbyCreateRoom(PacketManager*);
 	void LobbyEnterRoom(int, PacketManager*);
 };
-

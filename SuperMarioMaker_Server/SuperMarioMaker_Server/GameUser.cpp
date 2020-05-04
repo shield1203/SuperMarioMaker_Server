@@ -7,7 +7,9 @@
 #include "SystemFrame.h"
 #include "LoginSystem.h"
 #include "LobbySystem.h"
+#include "GameMapSystem.h"
 #include "GameRoomSystem.h"
+#include "GamePlaySystem.h"
 
 GameUser::GameUser(SOCKET socket, SOCKADDR_IN cliaddr)
 {
@@ -47,8 +49,15 @@ void GameUser::Initialize()
 		case USER_STATE::USER_LOBBY:
 			m_systemFrame = new LobbySystem();
 			break;
+		case USER_STATE::USER_MAP_UPLOAD:
+		case USER_STATE::USER_MAP_DOWNLOAD:
+			m_systemFrame = new GameMapSystem();
+			break;
 		case USER_STATE::USER_ROOM:
 			m_systemFrame = new GameRoomSystem();
+			break;
+		case USER_STATE::USER_PLAY_GAME:
+			m_systemFrame = new GamePlaySystem();
 			break;
 		}
 	}

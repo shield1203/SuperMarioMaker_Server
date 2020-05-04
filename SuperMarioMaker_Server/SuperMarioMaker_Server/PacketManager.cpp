@@ -31,8 +31,14 @@ void PacketManager::GetData(USER_STATE userState)
 	case USER_STATE::USER_LOBBY:
 		GetLobbyData();
 		break;
+	case USER_STATE::USER_MAP_UPLOAD:
+		// 게임룸에 저장함
+		break;
 	case USER_STATE::USER_ROOM:
 		GetGameRoomData();
+		break;
+	case USER_STATE::USER_PLAY_GAME:
+		GetGamePlayData();
 		break;
 	}
 }
@@ -55,6 +61,12 @@ void PacketManager::GetGameRoomData()
 	memcpy(m_gameRoomData, m_packetData->data, sizeof(GameRoomData));
 }
 
+void PacketManager::GetGamePlayData()
+{
+	ZeroMemory(m_gamePlayData, sizeof(GamePlayData));
+	memcpy(m_gamePlayData, m_packetData->data, sizeof(GamePlayData));
+}
+
 void PacketManager::SetPacket(USER_STATE userState)
 {
 	switch (userState)
@@ -65,8 +77,17 @@ void PacketManager::SetPacket(USER_STATE userState)
 	case USER_STATE::USER_LOBBY:
 		SetLobbyData();
 		break;
+	case USER_STATE::USER_MAP_UPLOAD:
+		// 맵 올리는 거라 보낼 데이터 없음
+		break;
+	case USER_STATE::USER_MAP_DOWNLOAD:
+		SetMapData();
+		break;
 	case USER_STATE::USER_ROOM:
 		SetGameRoomData();
+		break;
+	case USER_STATE::USER_PLAY_GAME:
+		SetGamePlayData();
 		break;
 	}
 }
@@ -91,33 +112,100 @@ void PacketManager::SetLobbyData()
 	SafeDelete(room);
 }
 
-void PacketManager::SetGameRoomData()
+void PacketManager::SetMapData()
 {
 	m_packetData->size = 0;
 
 	for (auto room : GameRoomManager::getInstance()->m_roomList)
 	{
-		if (room->bGameStart = true)
+		if (room->ownerUserId == m_ownerUserId)
 		{
-			m_gameRoomData->userReq = USER_ROOM::ROOM_GAME_START;
+			for (auto mapData : room->gameMapData)
+			{
+				memcpy(m_packetData->data + m_packetData->size, mapData, sizeof(GameMapData));
+				m_packetData->size += static_cast<unsigned short>(sizeof(GameMapData));
+			}
+			break;
+		}
+	}
+}
+
+void PacketManager::SetGameRoomData()
+{
+	m_packetData->size = static_cast<unsigned short>(sizeof(GameRoomData));
+
+	bool bRoomExist = true;
+
+	for (auto room : GameRoomManager::getInstance()->m_roomList)
+	{
+		if (room->ownerUserId == m_ownerUserId)
+		{
+			if (room->gameUserList.empty())
+			{
+				bRoomExist = false;
+			}
+
+			if (room->bGameStart)
+			{
+				m_gameRoomData->userReq = USER_ROOM::ROOM_GAME_START;
+			}
+
+			int type = 0;
+			for (auto user : room->gameUserList)
+			{
+				user->m_gameRoomData->type = static_cast<PLAYER_TYPE>(type);
+
+				if (user->m_userId == m_userId)
+				{
+					memcpy(m_packetData->data, m_gameRoomData, sizeof(GameRoomData));
+				}
+				else
+				{
+					memcpy(m_packetData->data + m_packetData->size, user->m_gameRoomData, sizeof(GameRoomData));
+					m_packetData->size += static_cast<unsigned short>(sizeof(GameRoomData));
+				}
+				type++;
+			}
+			break;
+		}
+	}
+
+	// 방 폭파
+	if (!bRoomExist)
+	{
+		m_ownerUserId = 0;
+		m_gameRoomData->userReq = USER_ROOM::ROOM_BACK_LOBBY;
+
+		memcpy(m_packetData->data, m_gameRoomData, sizeof(GameRoomData));
+	}
+}
+
+void PacketManager::SetGamePlayData()
+{
+	m_packetData->size = static_cast<unsigned short>(sizeof(GamePlayData));
+	
+	for (auto room : GameRoomManager::getInstance()->m_roomList)
+	{
+		if (!room->bGameStart)
+		{
+			m_gamePlayData->userReq = USER_PLAY::PLAY_RESULT;
 		}
 
 		if (room->ownerUserId == m_ownerUserId)
 		{
 			for (auto user : room->gameUserList)
 			{
-				memcpy(m_packetData->data + m_packetData->size, user->m_gameRoomData, sizeof(GameRoomData));
-				m_packetData->size += static_cast<unsigned short>(sizeof(GameRoomData));
+				if (user->m_userId == m_userId)
+				{
+					memcpy(m_packetData->data, m_gameRoomData, sizeof(GameRoomData));
+				}
+				else
+				{
+					memcpy(m_packetData->data + m_packetData->size, user->m_gameRoomData, sizeof(GameRoomData));
+					m_packetData->size += static_cast<unsigned short>(sizeof(GameRoomData));
+				}
 			}
+			break;
 		}
-	}
-
-	// 방 폭파
-	if (m_packetData->size == 0)
-	{
-		m_ownerUserId = 0;
-		m_gameRoomData->ownerUserId = 0;
-		m_gameRoomData->userReq = USER_ROOM::ROOM_BACK_LOBBY;
-		m_packetData->size += static_cast<unsigned short>(sizeof(GameRoomData));
 	}
 }

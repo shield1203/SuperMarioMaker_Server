@@ -2,6 +2,7 @@
 #define MAX_ROOM_USER_COUNT 4
 
 class PacketManager;
+class GameMapData;
 
 struct GameRoom
 {
@@ -10,6 +11,7 @@ struct GameRoom
 	string mapName = "";
 	bool bGameStart = false;
 	list<PacketManager*>gameUserList;
+	list<GameMapData*>gameMapData;
 };
 
 class GameRoomManager
@@ -26,7 +28,9 @@ public:
 	void CreateGameRoom(PacketManager*);
 	bool EnterRoom(int, PacketManager*);
 	void ExitRoom(int);
+	void UploadMapData(PacketManager*);
 	void GameStartRoom(int);
+	void GameClear(int);
 
 	~GameRoomManager();
 };

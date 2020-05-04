@@ -88,6 +88,12 @@ void GameRoomManager::ExitRoom(int userId)
 				(*user)->m_ownerUserId = 0;
 				user = (*room)->gameUserList.erase(user++);
 			}
+
+			for (auto mapData : (*room)->gameMapData)
+			{
+				SafeDelete(mapData);
+			}
+			(*room)->gameMapData.clear();
 		}
 		else
 		{
@@ -118,6 +124,26 @@ void GameRoomManager::ExitRoom(int userId)
 	}
 }
 
+void GameRoomManager::UploadMapData(PacketManager* pPacketManager)
+{
+	for (auto room : m_roomList)
+	{
+		if (room->ownerUserId == pPacketManager->m_ownerUserId)
+		{
+			int size = 0;
+			while (size < pPacketManager->m_packetData->size)
+			{
+				GameMapData* addMapData = new GameMapData;
+				memcpy(addMapData, pPacketManager->m_packetData->data + size, sizeof(GameMapData));
+				room->gameMapData.push_back(addMapData);
+
+				size += static_cast<unsigned short>(sizeof(GameMapData));
+			}
+			break;
+		}
+	}
+}
+
 void GameRoomManager::GameStartRoom(int ownerUserId)
 {
 	printf("[%d]방 게임시작\n", ownerUserId);
@@ -127,6 +153,20 @@ void GameRoomManager::GameStartRoom(int ownerUserId)
 		if (room->ownerUserId == ownerUserId)
 		{
 			room->bGameStart = true;
+			break;
+		}
+	}
+}
+
+void GameRoomManager::GameClear(int ownerUserId)
+{
+	printf("[%d]방 게임 클리어\n", ownerUserId);
+
+	for (auto room : m_roomList)
+	{
+		if (room->ownerUserId == ownerUserId)
+		{
+			room->bGameStart = false;
 			break;
 		}
 	}
