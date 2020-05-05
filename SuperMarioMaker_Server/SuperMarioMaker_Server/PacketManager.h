@@ -36,7 +36,7 @@ struct LobbyData_GameRoom
 };
 
 // Up / Download
-enum class USER_MAP : unsigned short { MAP_OBJECT, MAP_TILE, MAP_ITEM, MAP_ENEMY };
+enum class USER_MAP : unsigned int { MAP_OBJECT, MAP_TILE, MAP_ITEM, MAP_ENEMY };
 
 struct GameMapData
 {

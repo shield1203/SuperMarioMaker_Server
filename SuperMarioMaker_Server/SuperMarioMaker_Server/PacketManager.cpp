@@ -8,6 +8,7 @@ PacketManager::PacketManager()
 	m_loginData = new LoginData;
 	m_lobbyData = new LobbyData;
 	m_gameRoomData = new GameRoomData;
+	m_gamePlayData = new GamePlayData;
 }
 
 PacketManager::~PacketManager()
@@ -135,11 +136,13 @@ void PacketManager::SetGameRoomData()
 	m_packetData->size = static_cast<unsigned short>(sizeof(GameRoomData));
 
 	bool bRoomExist = true;
+	bool bRoom = false;
 
 	for (auto room : GameRoomManager::getInstance()->m_roomList)
 	{
 		if (room->ownerUserId == m_ownerUserId)
 		{
+			bRoom = true;
 			if (room->gameUserList.empty())
 			{
 				bRoomExist = false;
@@ -171,7 +174,7 @@ void PacketManager::SetGameRoomData()
 	}
 
 	// ¹æ ÆøÆÄ
-	if (!bRoomExist)
+	if (!bRoomExist || !bRoom)
 	{
 		m_ownerUserId = 0;
 		m_gameRoomData->userReq = USER_ROOM::ROOM_BACK_LOBBY;
@@ -197,12 +200,12 @@ void PacketManager::SetGamePlayData()
 			{
 				if (user->m_userId == m_userId)
 				{
-					memcpy(m_packetData->data, m_gameRoomData, sizeof(GameRoomData));
+					memcpy(m_packetData->data, m_gamePlayData, sizeof(GamePlayData));
 				}
 				else
 				{
-					memcpy(m_packetData->data + m_packetData->size, user->m_gameRoomData, sizeof(GameRoomData));
-					m_packetData->size += static_cast<unsigned short>(sizeof(GameRoomData));
+					memcpy(m_packetData->data + m_packetData->size, user->m_gamePlayData, sizeof(GamePlayData));
+					m_packetData->size += static_cast<unsigned short>(sizeof(GamePlayData));
 				}
 			}
 			break;

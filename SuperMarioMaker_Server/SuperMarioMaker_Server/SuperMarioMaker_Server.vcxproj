@@ -140,6 +140,8 @@
   <ItemGroup>
     <ClInclude Include="Define.h" />
     <ClInclude Include="DefineFunction.h" />
+    <ClInclude Include="GameMapSystem.h" />
+    <ClInclude Include="GamePlaySystem.h" />
     <ClInclude Include="GameRoomManager.h" />
     <ClInclude Include="GameRoomSystem.h" />
     <ClInclude Include="GameUser.h" />
@@ -151,6 +153,8 @@
     <ClInclude Include="SystemFrame.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameMapSystem.cpp" />
+    <ClCompile Include="GamePlaySystem.cpp" />
     <ClCompile Include="GameRoomManager.cpp" />
     <ClCompile Include="GameRoomSystem.cpp" />
     <ClCompile Include="GameUser.cpp" />

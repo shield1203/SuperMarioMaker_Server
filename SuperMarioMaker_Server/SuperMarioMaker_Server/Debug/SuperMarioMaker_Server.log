@@ -1,7 +1,4 @@
-﻿  GameRoomManager.cpp
-  GameUser.cpp
-  LobbySystem.cpp
-  PacketManager.cpp
-  ServerSystem.cpp
-  코드를 생성하고 있습니다...
+﻿  PacketManager.cpp
+F:\DX\SuperMarioMaker_Server\SuperMarioMaker_Server\GameRoomManager.h(5,18): warning C4099: 'GameMapData': 처음에는 'struct'을(를) 사용하여 형식 이름을 표시했는데 이제는 'class'을(를) 사용하여 표시합니다.
+F:\DX\SuperMarioMaker_Server\SuperMarioMaker_Server\PacketManager.h(41): message : 'GameMapData' 선언을 참조하십시오.
   SuperMarioMaker_Server.vcxproj -> F:\DX\SuperMarioMaker_Server\Debug\SuperMarioMaker_Server.exe

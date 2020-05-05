@@ -46,8 +46,14 @@
     <Filter Include="소스 파일\04.Systems\01.LoginSystem">
       <UniqueIdentifier>{9f63d705-22dc-430f-b14f-450e4759bd54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\04.Systems\03.GameRoomSystem">
+    <Filter Include="소스 파일\04.Systems\03GameMapSystem">
+      <UniqueIdentifier>{f38a3ee3-47a3-4a14-95b1-e125108041e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Systems\04.GameRoomSystem">
       <UniqueIdentifier>{54c2152e-0af3-40a4-870b-b24f7ee9fcb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.Systems\05.GamePlaySystem">
+      <UniqueIdentifier>{8456abc2-b0a6-424e-8fe3-177131508a18}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,7 +88,13 @@
       <Filter>소스 파일\04.Systems\01.LoginSystem</Filter>
     </ClInclude>
     <ClInclude Include="GameRoomSystem.h">
-      <Filter>소스 파일\04.Systems\03.GameRoomSystem</Filter>
+      <Filter>소스 파일\04.Systems\04.GameRoomSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMapSystem.h">
+      <Filter>소스 파일\04.Systems\03GameMapSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlaySystem.h">
+      <Filter>소스 파일\04.Systems\05.GamePlaySystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +120,13 @@
       <Filter>소스 파일\04.Systems\01.LoginSystem</Filter>
     </ClCompile>
     <ClCompile Include="GameRoomSystem.cpp">
-      <Filter>소스 파일\04.Systems\03.GameRoomSystem</Filter>
+      <Filter>소스 파일\04.Systems\04.GameRoomSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMapSystem.cpp">
+      <Filter>소스 파일\04.Systems\03GameMapSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlaySystem.cpp">
+      <Filter>소스 파일\04.Systems\05.GamePlaySystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
